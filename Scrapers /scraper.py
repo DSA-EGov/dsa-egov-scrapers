@@ -11,24 +11,19 @@ driver = webdriver.Chrome()
 # driver.get('https://www.legis.md/cautare/getResults?doc_id=138778&lang=ro')
 
 # Constitutia 2023
-driver.get('https://www.legis.md/cautare/getResults?doc_id=136130&lang=ro#')
+# driver.get('https://www.legis.md/cautare/getResults?doc_id=136130&lang=ro#')
 
 # Civil 2023
-# driver.get('https://www.legis.md/cautare/getResults?doc_id=136381&lang=ro#')
+driver.get('https://www.legis.md/cautare/getResults?doc_id=136381&lang=ro#')
 
-# Wait for the page to load
 time.sleep(2)
 
-# Get the HTML content from the page
 html_content = driver.page_source
 
-# Parse HTML with BeautifulSoup
 soup = BeautifulSoup(html_content, 'html.parser')
 
-# Dictionary to store Articol as key and content as value
 articol_list = []
 
-# Initialize temporary variables
 current_articol_name = None
 current_articol_content = ""
 
@@ -66,11 +61,8 @@ if current_articol_name:
 # Convert the list of dictionaries to JSON
 json_string = json.dumps(articol_list, ensure_ascii=False, indent=4)
 
-# Print or save the JSON string
-print(json_string)
-
 # Write to a file in the same directory
-with open('./../DB/db_constitution.json', 'w', encoding='utf-8') as f:
+with open('./../DB/db_civil.json', 'w', encoding='utf-8') as f:
     f.write(json_string)
 
 # Close the driver
